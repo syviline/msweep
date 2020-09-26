@@ -5,6 +5,8 @@ function sendRequest(data) {
         xhr.open("POST", "/")
         xhr.send(JSON.stringify(data))
 
+        xhr.timeout = 2000
+
         xhr.onload = () => {
             if (xhr.response == "error")
                 reject(xhr.response)
