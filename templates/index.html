@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">Minesweeper</div>
+    </header>
+    <div class="main">
+        <div class="container">
+            <div class="ongamestart">
+                <h2>Create a game</h2>
+                <div class="inside">
+                    <span class="label">Размер игрового поля</span><br>
+                    <input type="number" class="field_size" value="20"><br>
+                    <span class="label">Количество мин</span><br>
+                    <input type="number" class="mines_amount" value="40"><br>
+                    <button class="submit_game">Start the game</button>
+                </div>
+            </div>
+            <span class="game"></span>
+            <button class="stop_game">Stop the game</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
