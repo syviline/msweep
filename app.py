@@ -13,7 +13,10 @@ def get_data(request):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    ip = request.remote_addr
+    if request.headers.getlist("X-Forwarded-For"):
+        ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+        ip = request.remote_addr
 
     if request.method == "POST":
         a = get_data(request)
