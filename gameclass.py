@@ -117,7 +117,7 @@ class Game:
         field = self.games[self.ip]["openfield"][x]
         if field[y] == "-":
             field[y] = "F"
-        else:
+        elif field[y] == "F":
             field[y] = "-"
     
     def state(self):
