@@ -106,6 +106,8 @@ class Game:
         return "ok"
     
     def flag(self, x, y):
+        print(self.ip)
+        print(self.games[self.ip])
         field = self.games[self.ip]["openfield"][x]
         if field[y] == "-":
             field[y] = "F"

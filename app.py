@@ -18,6 +18,8 @@ def index():
     else:
         ip = request.remote_addr
     
+    game.currently_working_with(ip)
+    
     print(game.games)
 
     if request.method == "POST":
@@ -26,7 +28,6 @@ def index():
             return "ok"
         
         elif a['type'] == 'start_game':  # Start of the game
-            game.currently_working_with(ip)
             if ip in game.games:
                 return game.get_field(ip)
                 pass  # TODO
@@ -34,26 +35,21 @@ def index():
             return game.get_field(ip)
         
         elif a['type'] == 'get_field':
-            game.currently_working_with(ip)
             return game.get_field()
 
         elif a['type'] == 'move':
-            game.currently_working_with(ip)
             a = game.make_move(int(a['x']), int(a['y']))
             return game.get_field()
         
         elif a['type'] == 'stop_game':
-            game.currently_working_with(ip)
             game.stop()
             return "ok"
         
         elif a['type'] == 'flag':
-            game.currently_working_with(ip)
             game.flag(int(a['x']), int(a['y']))
             return game.get_field()
         
         elif a['type'] == 'state':
-            game.currently_working_with(ip)
             return game.state()
 
 
