@@ -1,4 +1,4 @@
-function sendRequest(data) {
+function sendRequest(data) { // Send XHR request to /
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest()
 
@@ -19,7 +19,7 @@ function sendRequest(data) {
     })
 }
 
-function createElement(name, ...args) {
+function createElement(name, ...args) { // Create DOM element
     let elem = document.createElement(name)
     for (let i of args) {
         elem.classList.add(i)
@@ -37,10 +37,10 @@ function renderField(field) {
         for (let j in field[i]) {
             let elem = createElement("span", "col", `elem-${i}`)
             elem.innerText = field[i][j]
-            elem.addEventListener('click', () => {
+            elem.addEventListener('click', () => { // On left click on a field
                 makeMove(i, j)
             })
-            elem.addEventListener('contextmenu', (e) => {
+            elem.addEventListener('contextmenu', (e) => { // On right click on a field
                 e.preventDefault()
                 makeFlag(i, j)
             })
@@ -78,9 +78,9 @@ function makeMove(x, y) {
         console.log(response)
         renderField(response.field)
         if (response.state == "fail") {
-            displayMessage("You have lost.")
+            displayMessage("Вы проиграли.")
         } else if (response.state == "won") {
-            displayMessage("You have won!", "#0D0")
+            displayMessage("Вы выиграли!", "#0D0")
         }
     })
 }
