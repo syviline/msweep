@@ -17,6 +17,8 @@ def index():
         ip = request.headers.getlist("X-Forwarded-For")[0]
     else:
         ip = request.remote_addr
+    
+    print(game.games)
 
     if request.method == "POST":
         a = get_data(request)
