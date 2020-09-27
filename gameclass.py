@@ -69,12 +69,18 @@ class Game:
         else:
             openfield[x][y] = str(amount)  # field is checked and mines were found, we print a number there
     
-    def get_field(self, is_json=True):  # Return the field(in json format by default)
+    def get_field(self, is_json=True, with_state=False):  # Return the field(in json format by default)
         if self.ip not in self.games:
             return "100"
         if is_json:
-            return json.dumps(self.games[self.ip]["openfield"])
-        return self.games[self.ip]["openfield"]
+            if with_state:
+                return json.dumps({"field": self.games[self.ip]["openfield"], "state": self.games[self.ip]["state"]})
+            else:
+                return json.dumps(self.games[self.ip]["openfield"])
+        if with_state:
+            return {"field": self.games[self.ip]["openfield"], "state": self.games[self.ip]["state"]}
+        else:
+            return self.games[self.ip]["openfield"]
     
     def check_for_win(self):
         this_game = self.games[self.ip]

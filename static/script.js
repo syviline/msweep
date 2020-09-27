@@ -74,17 +74,13 @@ function stopGame() {
 function makeMove(x, y) {
     req = sendRequest({type: 'move', x: x, y: y})
     req.then(response => {
+        response = JSON.parse(response)
         console.log(response)
-        renderField(JSON.parse(response))
-    })
-    req = sendRequest({type: 'state'})
-    req.then(response => {
-        if (response == "fail") {
-            displayMessage("Вы проиграли.")
-            document.querySelector(".stop_game").innerText = "New Game"
-        } else if (response == "won") {
-            displayMessage("Вы выиграли!", "#0D0")
-            document.querySelector(".stop_game").innerText = "New Game"
+        renderField(response.field)
+        if (response.state == "fail") {
+            displayMessage("You have lost.")
+        } else if (response.state == "won") {
+            displayMessage("You have won!", "#0D0")
         }
     })
 }

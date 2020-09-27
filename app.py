@@ -39,7 +39,7 @@ def index():
 
         elif a['type'] == 'move':
             a = game.make_move(int(a['x']), int(a['y']))
-            return game.get_field()
+            return game.get_field(with_state=True)
         
         elif a['type'] == 'stop_game':
             game.stop()
@@ -48,9 +48,6 @@ def index():
         elif a['type'] == 'flag':
             game.flag(int(a['x']), int(a['y']))
             return game.get_field()
-        
-        elif a['type'] == 'state':
-            return game.state()
 
 
     else:
